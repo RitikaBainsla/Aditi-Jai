@@ -16,6 +16,20 @@
   .petals { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:2; overflow:hidden; }
   .petal { position:absolute; top:-12vh; width:11px; height:16px; border-radius:85% 10% 85% 10%; opacity:.72; animation:fall linear infinite; filter:drop-shadow(0 1px 1px #0002); }
   @keyframes fall { 0% { transform:translate3d(0,-8vh,0) rotate(0deg); } 100% { transform:translate3d(var(--drift),112vh,0) rotate(720deg); } }
+
+  .first-page-scroll {
+    position:absolute; left:50%; bottom:clamp(18px,4vh,34px); transform:translateX(-50%);
+    z-index:7; display:flex; flex-direction:column; align-items:center; gap:7px;
+    padding:10px 16px; border:1px solid #f4e4c5aa; border-radius:30px;
+    color:#fff8e9; background:#10182788; font:10px system-ui,sans-serif;
+    letter-spacing:.2em; text-transform:uppercase; text-decoration:none;
+    line-height:1.2; cursor:pointer; backdrop-filter:blur(5px);
+    animation:scrollPulse 2s ease-in-out infinite;
+  }
+  .first-page-scroll .down-arrow { font:24px/1 Arial,sans-serif; letter-spacing:0; }
+  @keyframes scrollPulse { 0%,100% { transform:translate(-50%,0); opacity:.78; } 50% { transform:translate(-50%,5px); opacity:1; } }
+  @media (prefers-reduced-motion:reduce) { .first-page-scroll { animation:none; } }
+
   .page-label { display:none !important; }
   .map-page { font-size:16px; margin:0; min-height:100svh; padding:clamp(24px,5vw,64px) 18px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:18px; text-align:center; color:#f8efe0; background:radial-gradient(ellipse at top,#293955,#101827 68%); }
   .map-page .eyebrow { font:11px system-ui,sans-serif; letter-spacing:.28em; text-transform:uppercase; color:#d7c39b; }
@@ -80,8 +94,11 @@ body.intro-active { overflow:hidden; }
     <section class="page" aria-label="Invitation page 1">
       <video class="invite-video" src="1.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Invitation design 1"></video>
       <div class="petals" data-colors="#d7a65b,#e9c981,#fff0cc,#b7a46b"></div>
+      <a class="first-page-scroll" href="#wedding-date" aria-label="Scroll down to wedding date">
+        <span>Scroll down</span><span class="down-arrow" aria-hidden="true">⌄</span>
+      </a>
     </section>
-    <section class="date-reveal" aria-label="Wedding date and countdown">
+    <section class="date-reveal" id="wedding-date" aria-label="Wedding date and countdown">
       <div class="eyebrow">Save the date</div>
       <h2>27th January 2027</h2>
       <p class="hint">We can't wait to celebrate this special day with you.</p>
